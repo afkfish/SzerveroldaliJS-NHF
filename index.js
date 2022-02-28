@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
-const path = require("path");
+app.use(express.static(__dirname + "/templates"));
 
 app.get("/", (req, res, next) => {
-	return res.sendFile(path.join(__dirname + "/templates/main.html"));
+	return res.sendFile(__dirname + "/templates/main.html");
 });
 
 app.get("/playlists", (req, res, next) => {
