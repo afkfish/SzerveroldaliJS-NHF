@@ -7,11 +7,15 @@ app.get("/", (req, res, next) => {
 });
 
 app.get("/playlists", (req, res, next) => {
-	return res.send("<h1>Playlists");
+	return res.sendFile(__dirname + "/templates/playlists.html");
 });
 
 app.get("/artists", (req, res, next) => {
-	return res.send("<h1>Artists");
+	return res.send("<h1/>Artists");
+});
+
+app.get("/registration", (req, res, next) => {
+	return res.send("<h1/>Registration");
 });
 
 app.listen(3000, () => {
