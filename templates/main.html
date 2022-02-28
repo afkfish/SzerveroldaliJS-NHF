@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<title>Datapack gen</title>
@@ -8,14 +8,24 @@
 	<body>
 		<nav>
 			<div class="pages">
-				<button>Playlists</button>
-				<button>Artists</button>
+				<button onclick="location.href='/playlists';">Playlists</button>
+				<button onclick="location.href='/artists';">Artists</button>
 			</div>
 			<button>Register</button>
 		</nav>
 		<div class="login-form">
-			<input type="text" alt="username" />
-			<input type="password" alt="password" />
+			<input
+				title="usr"
+				type="text"
+				alt="username"
+				placeholder="Username"
+			/>
+			<input
+				title="psswrd"
+				type="password"
+				alt="password"
+				placeholder="Password"
+			/>
 			<button>Login</button>
 		</div>
 	</body>
