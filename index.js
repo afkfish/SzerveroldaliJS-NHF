@@ -1,13 +1,14 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const session = require();
 
-app.use(express.static(__dirname + '/templates'));
+app.use(express.static('static'));
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 app.get('/', (req, res, next) => {
-	return res.sendFile(__dirname + '/templates/main.html');
+	return res.sendFile(__dirname + '/static/main.html');
 });
 
 app.post(
@@ -20,12 +21,12 @@ app.post(
 		return next();
 	},
 	(req, res, next) => {
-		return res.sendFile(__dirname + '/templates/playlists.html');
+		return res.redirect('/playlists');
 	}
 );
 
 app.get('/playlists', (req, res, next) => {
-	return res.sendFile(__dirname + '/templates/playlists.html');
+	return res.sendFile(__dirname + '/static/playlists.html');
 });
 
 app.get('/artists', (req, res, next) => {

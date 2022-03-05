@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Playlists</title>
-		<link rel="stylesheet" href="./static/css/style.css" />
-		<link rel="icon" href="./static/img/icon.png" />
+		<link rel="stylesheet" href="./css/style.css" />
+		<link rel="icon" href="./img/icon.png" />
 		<link rel="script" href="../index.js" />
 	</head>
 	<body>
@@ -45,7 +45,7 @@
 					del.innerHTML = "<a href='#'/>Delete";
 				});
 			};
-			fetch("../static/table_data/table.json")
+			fetch("./table_data/table.json")
 				.then(resp => {
 					return resp.json();
 				})
