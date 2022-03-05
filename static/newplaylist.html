@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Playlists main page</title>
+		<title>New/edit Playlist</title>
 		<link rel="stylesheet" href="./css/style.css" />
 		<link rel="icon" href="./img/icon.png" />
 	</head>
@@ -12,25 +12,17 @@
 				<button onclick="location.href='/playlists';">Playlists</button>
 				<button onclick="location.href='/artists';">Artists</button>
 			</div>
-			<button>Register</button>
 		</nav>
-		<div class="login-form form">
+		<div class="new_edit form">
 			<form method="post">
 				<input
-					name="usr"
-					id="usr"
+					name="pl_name"
+					id="pl_name"
 					type="text"
-					alt="username"
-					placeholder="Username"
+					alt="playlist name"
+					placeholder="Playlist name"
 				/>
-				<input
-					name="psswrd"
-					id="psswrd"
-					type="password"
-					alt="password"
-					placeholder="Password"
-				/>
-				<button type="submit">Login</button>
+				<button type="submit">Save</button>
 			</form>
 		</div>
 	</body>

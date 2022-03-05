@@ -5,7 +5,6 @@
 		<title>Playlists</title>
 		<link rel="stylesheet" href="./css/style.css" />
 		<link rel="icon" href="./img/icon.png" />
-		<link rel="script" href="../index.js" />
 	</head>
 	<body>
 		<nav>
@@ -22,34 +21,34 @@
 					<th>Date created</th>
 					<th colspan="3">Actions</th>
 				</thead>
-				<tbody id="playlist_table">
-				</tbody>
+				<tbody id="playlist_table"></tbody>
 			</table>
+			<button onclick="location.href='/new_playlist'" class="newplaylist">
+				New
+			</button>
 		</div>
 		<script>
 			const load_data_pl = (items) => {
-				const table = document.getElementById('playlist_table');
+				const table = document.getElementById("playlist_table");
 				items.forEach((item) => {
 					let row = table.insertRow();
 					let name = row.insertCell(0);
-					name.innerHTML = item.name;
+					name.innerHTML = "<a href='#'>" + item.name + "</a>";
 					let user = row.insertCell(1);
 					user.innerHTML = item.user;
 					let date = row.insertCell(2);
 					date.innerHTML = item.date;
-					let read = row.insertCell(3);
-					let edit = row.insertCell(4);
-					let del = row.insertCell(5);
-					read.innerHTML = "<a href='#'/>Read";
+					let edit = row.insertCell(3);
+					let del = row.insertCell(4);
 					edit.innerHTML = "<a href='#'/>Edit";
 					del.innerHTML = "<a href='#'/>Delete";
 				});
 			};
 			fetch("./table_data/table.json")
-				.then(resp => {
+				.then((resp) => {
 					return resp.json();
 				})
-				.then(data => load_data_pl(data));
+				.then((data) => load_data_pl(data));
 		</script>
 	</body>
 </html>

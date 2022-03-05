@@ -1,14 +1,14 @@
 @font-face {
-	font-family: 'Kontanter';
-	src: url('./fonts/Kontanter-Bold.ttf') format('truetype');
+	font-family: "Kontanter";
+	src: url("./fonts/Kontanter-Bold.ttf") format("truetype");
 }
 @font-face {
-	font-family: 'Fredoka-light';
-	src: url('./fonts/Fredoka-light.ttf') format('truetype');
+	font-family: "Fredoka-light";
+	src: url("./fonts/Fredoka-light.ttf") format("truetype");
 }
 :root {
-	--font-main: 'Kontanter';
-	--font-input: 'Fredoka-light';
+	--font-main: "Kontanter";
+	--font-input: "Fredoka-light";
 	--color-main: #efefef;
 }
 body {
@@ -68,7 +68,7 @@ button:active {
 		inset 2px 2px 2px rgba(255, 255, 255, 0.075),
 		inset 2px 2px 4px rgba(0, 0, 0, 0.15);
 }
-.login-form form {
+.form form {
 	padding-top: 23em;
 	display: flex;
 	align-items: center;
@@ -76,12 +76,12 @@ button:active {
 	flex-direction: column;
 	row-gap: 2em;
 }
-.login-form form input,
-.login-form form button {
+.form form input,
+.form form button {
 	justify-content: center;
 	width: 230px;
 }
-.login-form form input {
+.form form input {
 	font-family: var(--font-input);
 	font-size: medium;
 	font-weight: 500;
@@ -97,7 +97,7 @@ button:active {
 	transition: all 0.2s ease-in-out;
 	appearance: none;
 }
-.login-form form input:focus {
+.form form input:focus {
 	box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
 }
 .playlists {
@@ -119,6 +119,9 @@ th,
 td {
 	padding: 1em;
 }
-th[colspan]:not([colspan='1']) {
+th[colspan]:not([colspan="1"]) {
 	text-align: center;
+}
+.playlists {
+	row-gap: 2em;
 }
