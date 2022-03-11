@@ -1,5 +1,6 @@
 const rendermw = require("../middleware/render");
 const ctime = require("../middleware/ctime");
+const auth = require("../middleware/auth");
 
 module.exports = function (app) {
 	const obj = {
@@ -21,22 +22,37 @@ module.exports = function (app) {
 		}
 	);
 
-	app.get("/playlists", rendermw("playlists"));
+	app.get("/playlists", auth(), rendermw("playlists"));
 
-	app.get("/playlist/:id", rendermw("playlist"));
+	app.get("/playlist/:id", auth(), rendermw("playlist"));
 
-	app.get("/artists", rendermw("artists"));
+	app.get("/artists", auth(), rendermw("artists"));
 
-	app.get("/artist/:id", rendermw("artist"));
+	app.get("/artist/:id", auth(), rendermw("artist"));
 
-	app.get("/new/song", rendermw("newsong"));
+	app.get("/new/song", auth(), rendermw("newsong"));
 
-	app.get("/register", rendermw("registration")); /////////////
+	app.get("/registration", rendermw("registration"));
 
-	app.get("/new/playlist", rendermw("newplaylist"));
+	app.post(
+		"/registration",
+		(req, res, next) => {
+			if (typeof req.body.usr !== "undefined") {
+				console.log(req.body.usr);
+				console.log(req.body.psswrd);
+				return next();
+			}
+		},
+		(req, res, next) => {
+			return res.redirect("/playlists");
+		}
+	);
+
+	app.get("/new/playlist", auth(), rendermw("newplaylist"));
 
 	app.post(
 		"/new/playlist",
+		auth(),
 		(req, res, next) => {
 			if (typeof req.body.pl_name !== "undefined") {
 				console.log(req.body.pl_name);
@@ -49,10 +65,11 @@ module.exports = function (app) {
 		}
 	);
 
-	app.get("/new/artist", rendermw("newartist"));
+	app.get("/new/artist", auth(), rendermw("newartist"));
 
 	app.post(
 		"/new/artist",
+		auth(),
 		(req, res, next) => {
 			if (typeof req.body.ar_name !== "undefined") {
 				console.log(req.body.ar_name);
