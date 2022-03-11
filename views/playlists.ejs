@@ -40,11 +40,11 @@
             date.innerHTML = item.date;
             let edit = row.insertCell(3);
             let del = row.insertCell(4);
-            edit.innerHTML = "<a href='#'/>Edit";
+            edit.innerHTML = "<a href='/new/playlist'/>Edit";
             del.innerHTML = "<a href='#'/>Delete";
         });
     };
-    fetch("./table_data/table.json")
+    fetch("./table_data/playlists.json")
         .then((resp) => {
             return resp.json();
         })

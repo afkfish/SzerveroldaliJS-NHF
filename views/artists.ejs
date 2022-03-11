@@ -26,5 +26,26 @@
         New
     </button>
 </div>
+<script>
+    const load_data_pl = (items) => {
+        const table = document.getElementById("artist_table");
+        items.forEach((item) => {
+            let row = table.insertRow();
+            let name = row.insertCell(0);
+            name.innerHTML = "<a href='/artist/" + item.name + "'>" + item.name + "</a>";
+            let count = row.insertCell(1);
+            count.innerHTML = item.user;
+            let edit = row.insertCell(2);
+            let del = row.insertCell(3);
+            edit.innerHTML = "<a href='/new/artist'/>Edit";
+            del.innerHTML = "<a href='#'/>Delete";
+        });
+    };
+    fetch("./table_data/artists.json")
+        .then((resp) => {
+            return resp.json();
+        })
+        .then((data) => load_data_pl(data));
+</script>
 </body>
 </html>
