@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Playlists</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="icon" href="/img/icon.png"/>
+</head>
+<body>
+<nav>
+    <div class="pages">
+        <button class="active">Playlists</button>
+        <button onclick="location.href='/artists';">Artists</button>
+    </div>
+</nav>
+<div class="playlists">
+    <table>
+        <thead>
+        <th>Playlist name</th>
+        <th>Created by</th>
+        <th>Date created</th>
+        <th colspan="2">Actions</th>
+        </thead>
+        <tbody id="playlist_table"></tbody>
+    </table>
+    <button onclick="location.href='/new/playlist'" class="new">
+        New
+    </button>
+</div>
+<script>
+    const load_data_pl = (items) => {
+        const table = document.getElementById("playlist_table");
+        items.forEach((item) => {
+            let row = table.insertRow();
+            let name = row.insertCell(0);
+            name.innerHTML = "<a href='/playlist/" + item.name + "'>" + item.name + "</a>";
+            let user = row.insertCell(1);
+            user.innerHTML = item.user;
+            let date = row.insertCell(2);
+            date.innerHTML = item.date;
+            let edit = row.insertCell(3);
+            let del = row.insertCell(4);
+            edit.innerHTML = "<a href='#'/>Edit";
+            del.innerHTML = "<a href='#'/>Delete";
+        });
+    };
+    fetch("./table_data/table.json")
+        .then((resp) => {
+            return resp.json();
+        })
+        .then((data) => load_data_pl(data));
+</script>
+</body>
+</html>

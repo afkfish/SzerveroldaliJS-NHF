@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Artist</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="icon" href="/img/icon.png"/>
+</head>
+<body>
+<nav>
+    <div class="pages">
+        <button onclick="location.href='/playlists';">Playlists</button>
+        <button onclick="location.href='/artists';">Artists</button>
+    </div>
+</nav>
+<div class="songs">
+    <div class="label">
+        <h1>Artist name</h1>
+        <h1>Monthly listeners</h1>
+    </div>
+    <table>
+        <thead>
+        <th>Song name</th>
+        <th>Genre</th>
+        <th colspan="2">Actions</th>
+        </thead>
+        <tbody id="playlist_table"></tbody>
+    </table>
+    <button onclick="location.href='/new/song'" class="new">
+        New
+    </button>
+</div>
+</body>
+</html>

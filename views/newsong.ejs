@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>New/edit song</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="icon" href="/img/icon.png"/>
+</head>
+<body>
+<nav>
+    <div class="pages">
+        <button onclick="location.href='/playlists';">Playlists</button>
+        <button onclick="location.href='/artists';">Artists</button>
+    </div>
+</nav>
+<div class="new_edit form">
+    <form method="post">
+        <input
+                name="s_name"
+                type="text"
+                placeholder="Song name"
+        />
+        <input
+                name="ar_name"
+                type="text"
+                placeholder="Artist's name"
+        />
+        <input
+                name="genre"
+                type="text"
+                placeholder="Genre"
+        />
+        <button type="submit">Save</button>
+    </form>
+</div>
+</body>
+</html>

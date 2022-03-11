@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Artists</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="icon" href="/img/icon.png"/>
+</head>
+<body>
+<nav>
+    <div class="pages">
+        <button onclick="location.href='/playlists';">Playlists</button>
+        <button class="active">Artists</button>
+    </div>
+</nav>
+<div class="artists">
+    <table>
+        <thead>
+        <th>Artist name</th>
+        <th>Monthly listeners</th>
+        <th colspan="2">Actions</th>
+        </thead>
+        <tbody id="artist_table"></tbody>
+    </table>
+    <button onclick="location.href='/new/artist'" class="new">
+        New
+    </button>
+</div>
+</body>
+</html>
