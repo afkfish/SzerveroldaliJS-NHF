@@ -32,6 +32,21 @@ module.exports = function (app) {
 
 	app.get("/new/song", auth(), rendermw("newsong"));
 
+	app.post(
+		"/new/song",
+		(req, res, next) => {
+			if (typeof req.body.s_name !== "undefined") {
+				console.log(req.body.s_name);
+				console.log(req.body.ar_name);
+				console.log(req.body.genre);
+				return next();
+			}
+		},
+		(req, res, next) => {
+			return res.redirect("/playlist/alma");
+		}
+	);
+
 	app.get("/registration", rendermw("registration"));
 
 	app.post(
