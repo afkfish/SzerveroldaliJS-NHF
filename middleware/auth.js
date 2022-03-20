@@ -1,5 +1,5 @@
-module.exports = function () {
-	return function (req, res, next) {
-		next();
+module.exports = () => {
+	return (req, res, next) => {
+		return next();
 	};
 };

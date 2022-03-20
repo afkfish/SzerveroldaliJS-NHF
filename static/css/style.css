@@ -145,3 +145,8 @@ th[colspan]:not([colspan="1"]) {
 .songs {
 	row-gap: 2em;
 }
+h2 .error {
+	color: whitesmoke;
+	background-color: red;
+	border-radius: 15px;
+}

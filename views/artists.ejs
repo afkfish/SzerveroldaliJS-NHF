@@ -34,7 +34,7 @@
             let name = row.insertCell(0);
             name.innerHTML = "<a href='/artist/" + item.name + "'>" + item.name + "</a>";
             let count = row.insertCell(1);
-            count.innerHTML = item.user;
+            count.innerHTML = item.count;
             let edit = row.insertCell(2);
             let del = row.insertCell(3);
             edit.innerHTML = "<a href='/new/artist'/>Edit";

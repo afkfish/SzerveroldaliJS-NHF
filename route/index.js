@@ -1,34 +1,24 @@
 const rendermw = require("../middleware/render");
 const ctime = require("../middleware/ctime");
 const auth = require("../middleware/auth");
+const checkpw = require("../middleware/checkpw");
 
 module.exports = function (app) {
 	const obj = {
 		playlist_m: {},
 	};
-	app.get("/", rendermw("main"));
-
-	app.post(
-		"/",
-		(req, res, next) => {
-			if (typeof req.body.usr !== "undefined") {
-				console.log(req.body.usr);
-				console.log(req.body.psswrd);
-				return next();
-			}
-		},
-		(req, res, next) => {
-			return res.redirect("/playlists");
-		}
-	);
 
 	app.get("/playlists", auth(), rendermw("playlists"));
 
-	app.get("/playlist/:id", auth(), rendermw("playlist"));
+	app.get("/playlist/:id", auth(), (req, res, next) => {
+		res.render("artist", { id: req.params.id });
+	});
 
 	app.get("/artists", auth(), rendermw("artists"));
 
-	app.get("/artist/:id", auth(), rendermw("artist"));
+	app.get("/artist/:id", auth(), (req, res, next) => {
+		res.render("artist", { id: req.params.id });
+	});
 
 	app.get("/new/song", auth(), rendermw("newsong"));
 
@@ -99,4 +89,5 @@ module.exports = function (app) {
 			return res.redirect("/artists");
 		}
 	);
+	app.use("/", checkpw(), rendermw("main"));
 };
