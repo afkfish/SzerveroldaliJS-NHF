@@ -14,11 +14,11 @@
     </div>
     <button onclick="location.href='/registration'">Register</button>
 </nav>
-<% if (typeof error !== "undefined") { %>
-    <h2 class="error"><% error %></h2>
-<% }  %>
 <div class="login-form form">
     <form method="POST">
+        <% if (typeof error !== "undefined") { %>
+            <h2 class="error"><%= error %></h2>
+        <% }  %>
         <input
                 name="username"
                 id="username"

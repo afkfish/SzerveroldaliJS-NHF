@@ -5,8 +5,10 @@ module.exports = () => {
 			typeof req.body.password === "undefined"
 		) {
 			return next();
-		}
-		if (req.body.username === "test" && req.body.password === "test") {
+		} else if (
+			req.body.username === "test" &&
+			req.body.password === "test"
+		) {
 			return res.redirect("/playlists");
 		}
 		res.locals.error = "Wrong username or password!";
