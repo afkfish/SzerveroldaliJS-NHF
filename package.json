@@ -27,6 +27,7 @@
 	"prettier": {
 		"tabWidth": 4,
 		"useTabs": true,
-		"bracketSpacing": true
+		"bracketSpacing": true,
+		"printWidth": 90
 	}
 }

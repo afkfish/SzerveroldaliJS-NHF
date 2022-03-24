@@ -4,6 +4,7 @@
         <button class="active">Playlists</button>
         <button onclick="location.href='/artists';">Artists</button>
     </div>
+    <button onclick="location.href='/logout'">Logout</button>
 </nav>
 <div class="playlists">
     <table>
@@ -17,7 +18,7 @@
             <% playlists.forEach(playlist => { %>
                 <tr>
                     <td><a href="/playlist/<%= playlist.name; %>"><%= playlist.name; %></a></td>
-                    <td><%= playlist.creator; %></td>
+                    <td><%= creator; %></td>
                     <td><%= playlist.date; %></td>
                     <td><a href="/edit/playlist/<%= playlist.name %>">Edit</a></td>
                     <td><a href="#">Delete</a></td>

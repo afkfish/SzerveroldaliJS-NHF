@@ -1,3 +1,6 @@
+/**
+ * lekerdezi az adatbazisbol az eloadokat es az adataikat
+ */
 module.exports = () => {
 	return (req, res, next) => {
 		res.locals.artists = [

@@ -5,8 +5,15 @@ const session = require("express-session");
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded());
-app.use(bodyParser.json());
 app.use("/assets", express.static("static"));
+app.use(
+	session({
+		secret: "AignmjiuhBmZLVW8jeh4",
+		resave: false,
+		saveUninitialized: true,
+		cookie: { secure: false },
+	})
+);
 
 require("./route/index")(app);
 

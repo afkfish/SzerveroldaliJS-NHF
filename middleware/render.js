@@ -1,6 +1,9 @@
+/**
+ * rendereli a megadott oldalt
+ * @param name ejs file neve
+ */
 module.exports = (name) => {
 	return (req, res, next) => {
-		res.render(name);
-		return next();
+		return res.render(name);
 	};
 };

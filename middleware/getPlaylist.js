@@ -1,3 +1,6 @@
+/**
+ * lekerdezi az adatbazisbol egy lejatszasi lista adatait
+ */
 module.exports = () => {
 	return (req, res, next) => {
 		res.locals.id = req.params.id;
