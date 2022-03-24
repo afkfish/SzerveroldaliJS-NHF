@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Registration</title>
-    <link rel="stylesheet" href="/css/style.css"/>
-    <link rel="icon" href="/img/icon.png"/>
-</head>
-<body>
+<%- include("header", {title: "Registration" })%>
 <nav>
     <div class="pages">
         <button onclick="location.href='/playlists';">Playlists</button>
@@ -33,5 +25,4 @@
         <button type="submit">Register</button>
     </form>
 </div>
-</body>
-</html>
+<%- include("footer")%>

@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Playlists</title>
-    <link rel="stylesheet" href="/css/style.css"/>
-    <link rel="icon" href="/img/icon.png"/>
-</head>
-<body>
+<%- include("header", {title: "Playlists" })%>
 <nav>
     <div class="pages">
         <button class="active">Playlists</button>
@@ -15,40 +7,26 @@
 </nav>
 <div class="playlists">
     <table>
-        <thead>
-        <th>Playlist name</th>
-        <th>Created by</th>
-        <th>Date created</th>
-        <th colspan="2">Actions</th>
-        </thead>
-        <tbody id="playlist_table"></tbody>
+        <tr>
+            <th>Playlist name</th>
+            <th>Created by</th>
+            <th>Date created</th>
+            <th colspan="2">Actions</th>
+        </tr>
+        <tbody id="playlist_table">
+            <% playlists.forEach(playlist => { %>
+                <tr>
+                    <td><a href="/playlist/<%= playlist.name; %>"><%= playlist.name; %></a></td>
+                    <td><%= playlist.creator; %></td>
+                    <td><%= playlist.date; %></td>
+                    <td><a href="/edit/playlist/<%= playlist.name %>">Edit</a></td>
+                    <td><a href="#">Delete</a></td>
+                </tr>
+            <% }); %>
+        </tbody>
     </table>
     <button onclick="location.href='/new/playlist'" class="new">
         New
     </button>
 </div>
-<script>
-    const load_data_pl = (items) => {
-        const table = document.getElementById("playlist_table");
-        items.forEach((item) => {
-            let row = table.insertRow();
-            let name = row.insertCell(0);
-            name.innerHTML = "<a href='/playlist/" + item.name + "'>" + item.name + "</a>";
-            let user = row.insertCell(1);
-            user.innerHTML = item.user;
-            let date = row.insertCell(2);
-            date.innerHTML = item.date;
-            let edit = row.insertCell(3);
-            let del = row.insertCell(4);
-            edit.innerHTML = "<a href='/new/playlist'/>Edit";
-            del.innerHTML = "<a href='#'/>Delete";
-        });
-    };
-    fetch("./table_data/playlists.json")
-        .then((resp) => {
-            return resp.json();
-        })
-        .then((data) => load_data_pl(data));
-</script>
-</body>
-</html>
+<%- include("footer")%>

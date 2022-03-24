@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Playlists main page</title>
-    <link rel="stylesheet" href="/css/style.css"/>
-    <link rel="icon" href="/img/icon.png"/>
-</head>
-<body>
+<%- include("header", {title : "Main"})%>
 <nav>
     <div class="pages">
         <button onclick="location.href='/playlists';">Playlists</button>
@@ -34,5 +26,4 @@
         <button type="submit">Login</button>
     </form>
 </div>
-</body>
-</html>
+<%- include("footer")%>

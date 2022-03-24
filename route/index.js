@@ -2,92 +2,36 @@ const rendermw = require("../middleware/render");
 const ctime = require("../middleware/ctime");
 const auth = require("../middleware/auth");
 const checkpw = require("../middleware/checkpw");
+const getartists = require("../middleware/getArtists");
+const getartist = require("../middleware/getArtist");
+const getsong = require("../middleware/getSong");
+const getplaylists = require("../middleware/getPlaylists");
+const getplaylist = require("../middleware/getPlaylist");
 
 module.exports = function (app) {
 	const obj = {
 		playlist_m: {},
 	};
 
-	app.get("/playlists", auth(), rendermw("playlists"));
-
-	app.get("/playlist/:id", auth(), (req, res, next) => {
-		res.render("artist", { id: req.params.id });
-	});
-
-	app.get("/artists", auth(), rendermw("artists"));
-
-	app.get("/artist/:id", auth(), (req, res, next) => {
-		res.render("artist", { id: req.params.id });
-	});
-
-	app.get("/new/song", auth(), rendermw("newsong"));
-
-	app.post(
-		"/new/song",
-		(req, res, next) => {
-			if (typeof req.body.s_name !== "undefined") {
-				console.log(req.body.s_name);
-				console.log(req.body.ar_name);
-				console.log(req.body.genre);
-				return next();
-			}
-		},
-		(req, res, next) => {
-			return res.redirect("/playlist/alma");
-		}
-	);
-
-	app.get("/registration", rendermw("registration"));
-
-	app.post(
-		"/registration",
-		(req, res, next) => {
-			if (typeof req.body.usr !== "undefined") {
-				console.log(req.body.usr);
-				console.log(req.body.psswrd);
-				return next();
-			}
-		},
-		(req, res, next) => {
-			return res.redirect("/playlists");
-		}
-	);
-
-	app.get("/new/playlist", auth(), rendermw("newplaylist"));
-
-	app.post(
-		"/new/playlist",
+	app.get("/playlists", auth(), getplaylists(), rendermw("playlists"));
+	app.get("/playlist/:id", auth(), getplaylist(), rendermw("playlist"));
+	app.use("/new/playlist", auth(), rendermw("newplaylist"));
+	app.use(
+		"/edit/playlist/:id",
 		auth(),
-		(req, res, next) => {
-			if (typeof req.body.pl_name !== "undefined") {
-				console.log(req.body.pl_name);
-				ctime();
-				next();
-			}
-		},
-		(req, res, next) => {
-			return res.redirect("/playlists");
-		}
+		getplaylist(),
+		rendermw("newplaylist")
 	);
 
-	app.get("/new/artist", auth(), rendermw("newartist"));
+	app.get("/artists", auth(), getartists(), rendermw("artists"));
+	app.get("/artist/:id", auth(), getartist(), rendermw("artist"));
+	app.use("/new/artist", auth(), rendermw("newartist"));
+	app.use("/edit/artist/:id", auth(), getartist(), rendermw("newartist"));
 
-	app.post(
-		"/new/artist",
-		auth(),
-		(req, res, next) => {
-			if (typeof req.body.ar_name !== "undefined") {
-				console.log(req.body.ar_name);
-				if (typeof req.body.m_lis !== "undefined") {
-					console.log(req.body.m_lis);
-				}
-				ctime();
-				next();
-			}
-		},
-		(req, res, next) => {
-			return res.redirect("/artists");
-		}
-	);
+	app.use("/new/song", auth(), rendermw("newsong"));
+	app.use("/edit/song/:id", auth(), getsong(), rendermw("newsong"));
+
+	app.use("/registration", rendermw("registration"));
+
 	app.use("/", checkpw(), rendermw("main"));
 };

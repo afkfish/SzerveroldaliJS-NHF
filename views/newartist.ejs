@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>New/edit artist</title>
-    <link rel="stylesheet" href="/css/style.css"/>
-    <link rel="icon" href="/img/icon.png"/>
-</head>
-<body>
+<%- include("header", {title: "New artist" })%>
 <nav>
     <div class="pages">
         <button onclick="location.href='/playlists';">Playlists</button>
@@ -18,15 +10,16 @@
         <input
                 name="ar_name"
                 type="text"
+                value="<%= typeof artist !== "undefined" ? artist.name : "" %>"
                 placeholder="Artist name"
         />
         <input
                 name="m_lis"
                 type="text"
+                value="<%= typeof artist !== "undefined" ? artist.ml : "" %>"
                 placeholder="Monthly listeners"
         />
         <button type="submit">Save</button>
     </form>
 </div>
-</body>
-</html>
+<%- include("footer")%>

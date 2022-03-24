@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Artists</title>
-    <link rel="stylesheet" href="/css/style.css"/>
-    <link rel="icon" href="/img/icon.png"/>
-</head>
-<body>
+<%- include("header", {title: "Artists" })%>
 <nav>
     <div class="pages">
         <button onclick="location.href='/playlists';">Playlists</button>
@@ -15,37 +7,24 @@
 </nav>
 <div class="artists">
     <table>
-        <thead>
-        <th>Artist name</th>
-        <th>Monthly listeners</th>
-        <th colspan="2">Actions</th>
-        </thead>
-        <tbody id="artist_table"></tbody>
+        <tr>
+            <th>Artist name</th>
+            <th>Monthly listeners</th>
+            <th colspan="2">Actions</th>
+        </tr>
+        <tbody id="artist_table">
+            <% artists.forEach(artist => { %>
+                <tr>
+                    <td><a href="/artist/<%= artist.name; %>"><%= artist.name; %></a></td>
+                    <td><%= artist.ml; %></td>
+                    <td><a href="/edit/artist/<%= artist.name %>">Edit</a></td>
+                    <td><a href="#">Delete</a></td>
+                </tr>
+            <% }); %>
+        </tbody>
     </table>
     <button onclick="location.href='/new/artist'" class="new">
         New
     </button>
 </div>
-<script>
-    const load_data_pl = (items) => {
-        const table = document.getElementById("artist_table");
-        items.forEach((item) => {
-            let row = table.insertRow();
-            let name = row.insertCell(0);
-            name.innerHTML = "<a href='/artist/" + item.name + "'>" + item.name + "</a>";
-            let count = row.insertCell(1);
-            count.innerHTML = item.count;
-            let edit = row.insertCell(2);
-            let del = row.insertCell(3);
-            edit.innerHTML = "<a href='/new/artist'/>Edit";
-            del.innerHTML = "<a href='#'/>Delete";
-        });
-    };
-    fetch("./table_data/artists.json")
-        .then((resp) => {
-            return resp.json();
-        })
-        .then((data) => load_data_pl(data));
-</script>
-</body>
-</html>
+<%- include("footer") %>
