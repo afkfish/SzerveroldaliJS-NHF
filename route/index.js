@@ -8,27 +8,37 @@ const get_song = require("../middleware/getSong");
 const get_playlists = require("../middleware/getPlaylists");
 const get_playlist = require("../middleware/getPlaylist");
 const logout = require("../middleware/logout");
+const theme = require("../middleware/theme");
 
 module.exports = function (app) {
 	const obj = {
 		playlist_m: {},
 	};
 
-	app.get("/playlists", auth(), get_playlists(), render_mw("playlists"));
-	app.get("/playlist/:id", auth(), get_playlist(), render_mw("playlist"));
-	app.use("/new/playlist", auth(), render_mw("new_playlist"));
-	app.use("/edit/playlist/:id", auth(), get_playlist(), render_mw("new_playlist"));
+	app.get("/playlists", theme(), auth(), get_playlists(), render_mw("playlists"));
+	app.get("/playlist/:id", theme(), auth(), get_playlist(), render_mw("playlist"));
+	app.use("/new/playlist", theme(), auth(), render_mw("new_playlist"));
+	app.use(
+		"/edit/playlist/:id",
+		theme(),
+		auth(),
+		get_playlist(),
+		render_mw("new_playlist")
+	);
 
-	app.get("/artists", auth(), get_artists(), render_mw("artists"));
-	app.get("/artist/:id", auth(), get_artist(), render_mw("artist"));
-	app.use("/new/artist", auth(), render_mw("new_artist"));
-	app.use("/edit/artist/:id", auth(), get_artist(), render_mw("new_artist"));
+	app.get("/artists", theme(), auth(), get_artists(), render_mw("artists"));
+	app.get("/artist/:id", theme(), auth(), get_artist(), render_mw("artist"));
+	app.use("/new/artist", theme(), auth(), render_mw("new_artist"));
+	app.use("/edit/artist/:id", theme(), auth(), get_artist(), render_mw("new_artist"));
 
-	app.use("/new/song", auth(), render_mw("new_song"));
-	app.use("/edit/song/:id", auth(), get_song(), render_mw("new_song"));
+	app.use("/new/song", theme(), auth(), render_mw("new_song"));
+	app.use("/edit/song/:id", theme(), auth(), get_song(), render_mw("new_song"));
 
-	app.use("/registration", render_mw("registration"));
-	app.use("/logout", logout());
+	app.use("/registration", theme(), render_mw("registration"));
+	app.use("/logout", theme(), logout());
 
-	app.use("/", check_pw(), render_mw("main"));
+	app.use("/theme/light", theme("toggle"));
+	app.use("/theme/dark", theme("toggle"));
+
+	app.use("/", theme(), check_pw(), render_mw("main"));
 };

@@ -5,5 +5,38 @@
     <title><%= 'Playlist | ' + (typeof title !== 'undefined' ? title : '') %></title>
     <link rel="stylesheet" href="/assets/css/style.css"/>
     <link rel="icon" href="/assets/img/icon.png"/>
+    <style>
+        <% if(theme === "dark") { %>
+            body {
+                background-color: rgb(43, 43, 43);
+                color: #efefef;
+            }
+            button {
+                background-color: rgb(54, 54, 54);
+                box-shadow: none;
+                color: #efefef;
+                padding: 5px 15px;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            button:hover {
+                color: rgb(108, 180, 159);
+                background-color: rgb(61, 61, 61);
+                box-shadow: none;
+            }
+            button:active {
+                color: rgb(75, 128, 112);
+                box-shadow: none;
+            }
+            .active {
+                color: rgb(75, 128, 112);
+                box-shadow: none;
+            }
+            .active:hover {
+                color: rgb(75, 128, 112);
+                box-shadow: none;
+            }
+        <% } %>
+    </style>
 </head>
 <body>
