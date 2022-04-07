@@ -3,19 +3,28 @@
  * es akkor egy adatbazisbol fogja lekerdezni a helyes felhasznaloi adatokat.
  * ha nem heyes akkor vissza iranyit a login pagere de egy hibaval
  */
-module.exports = () => {
+module.exports = (bcrypt) => {
+	const Users = require("../models/users");
 	return (req, res, next) => {
-		if (
-			typeof req.body.username === "undefined" ||
-			typeof req.body.password === "undefined"
-		) {
+		if (typeof req.body.username === "undefined" || typeof req.body.password === "undefined") {
 			return next();
-		} else if (req.body.username === "test" && req.body.password === "test") {
-			req.session.userid = req.body.username;
-			return res.redirect("/playlists");
-		} else {
-			res.locals.error = "Wrong username or password!";
 		}
-		return next();
+		Users.findOne({ username: req.body.username }, (error, user) => {
+			if (error || !user) {
+				res.locals.error = "Wrong username or password!";
+				return next();
+			}
+			bcrypt.compare(req.body.password, user.password, (error, result) => {
+				if (error) {
+					return next(error);
+				}
+				if (result) {
+					req.session.userid = req.body.username;
+					return res.redirect("/playlists");
+				}
+				res.locals.error = "Wrong username or password!";
+				return next();
+			});
+		});
 	};
 };

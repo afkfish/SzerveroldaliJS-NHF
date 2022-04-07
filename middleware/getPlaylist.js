@@ -1,20 +1,16 @@
 /**
  * lekerdezi az adatbazisbol egy lejatszasi lista adatait
  */
-module.exports = () => {
+module.exports = (obj) => {
+	const Playlists = obj.PlaylistModel;
 	return (req, res, next) => {
-		res.locals.id = req.params.id;
-		res.locals.playlist = {
-			name: res.locals.id,
-			date: "2022.03.21",
-		};
-		res.locals.songs = [
-			{
-				name: "neeee",
-				artist: "Feri",
-				genre: "DMB",
-			},
-		];
-		return next();
+		Playlists.findOne({ creator: req.session.userid, _id: req.params.pid }, (error, playlist) => {
+			if (error) {
+				return next(error);
+			}
+
+			res.locals.playlist = playlist;
+			return next();
+		});
 	};
 };

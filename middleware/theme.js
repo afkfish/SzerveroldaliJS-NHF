@@ -8,7 +8,7 @@ module.exports = (action) => {
 			} else {
 				res.cookie("theme", "light");
 			}
-			res.redirect("/");
+			return res.redirect("/");
 		}
 		return next();
 	};

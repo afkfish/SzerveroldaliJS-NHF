@@ -1,15 +1,15 @@
 /**
- * lekerdezi az adatbazisbol egy szam adatait
+ * lekerdezi az adatbazisbol a szamokat egy playlisthez
  */
 module.exports = (obj) => {
 	const Songs = obj.SongModel;
 	return (req, res, next) => {
-		Songs.findOne({ _id: req.params.sid }, (error, song) => {
+		Songs.find({ _pl: res.locals.playlist._id }, (error, songs) => {
 			if (error) {
 				return next(error);
 			}
 
-			res.locals.song = song;
+			res.locals.songs = songs;
 			return next();
 		});
 	};

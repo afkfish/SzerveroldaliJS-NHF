@@ -17,10 +17,10 @@
         <tbody id="playlist_table">
             <% playlists.forEach(playlist => { %>
                 <tr>
-                    <td><a href="/playlist/<%= playlist.name; %>"><%= playlist.name; %></a></td>
-                    <td><%= creator; %></td>
+                    <td><a href="/playlist/<%= playlist._id; %>"><%= playlist.name; %></a></td>
+                    <td><%= playlist.creator; %></td>
                     <td><%= playlist.date; %></td>
-                    <td><a href="/edit/playlist/<%= playlist.name %>">Edit</a></td>
+                    <td><a href="/edit/playlist/<%= playlist._id %>">Edit</a></td>
                     <td><a href="#">Delete</a></td>
                 </tr>
             <% }); %>
