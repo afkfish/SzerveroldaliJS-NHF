@@ -8,8 +8,8 @@
 </nav>
 <div class="songs">
     <div class="label">
-        <h1><%= id %></h1>
-        <h1>Monthly listeners</h1>
+        <h1><%= artist.name %></h1>
+        <h1><%= artist.ml %></h1>
     </div>
     <table>
         <tr>
@@ -22,12 +22,13 @@
                 <tr>
                     <td><%= song.name; %></td>
                     <td><%= song.genre; %></td>
-                    <td><a href="/edit/song/<%= song.name %>">Edit</a></td>
+                    <td><a href="/edit/song/<%= song._id %>/artist/<%= artist._id %>">Edit</a></td>
+                    <td><a href="/delete/song/<%= song._id %>/artist/<%= artist._id %>">Delete</a></td>
                 </tr>
             <% }); %>
         </tbody>
     </table>
-    <button onclick="location.href='/new/song'" class="new">
+    <button onclick="location.href='/new/song/artist/<%= artist._id %>'" class="new">
         New
     </button>
 </div>

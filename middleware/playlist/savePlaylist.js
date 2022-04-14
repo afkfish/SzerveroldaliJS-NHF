@@ -1,7 +1,6 @@
 module.exports = (obj) => {
 	const Playlist = obj.PlaylistModel;
-	const ctime = require("../middleware/ctime");
-
+	const ctime = require("../ctime");
 	return (req, res, next) => {
 		if (typeof req.body.pl_name === "undefined") {
 			return next();

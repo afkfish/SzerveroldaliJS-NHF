@@ -14,12 +14,14 @@
                 value="<%= typeof song !== "undefined" ? song.name : "" %>"
                 placeholder="Song name"
         />
-        <input
-                name="ar_name"
-                type="text"
-                value="<%= typeof song !== "undefined" ? song.artist : "" %>"
-                placeholder="Artist's name"
-        />
+        <% if (typeof artist === "undefined") { %>
+            <input
+                    name="ar_name"
+                    type="text"
+                    value="<%= typeof song !== "undefined" ? song.artist : "" %>"
+                    placeholder="Artist's name"
+            />
+        <% } %>
         <input
                 name="genre"
                 type="text"

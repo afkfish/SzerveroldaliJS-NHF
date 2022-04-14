@@ -25,6 +25,7 @@
                     <td><%= song.artist; %></td>
                     <td><%= song.genre; %></td>
                     <td><a href="/edit/song/<%= song._id %>/playlist/<%= playlist._id %>">Edit</a></td>
+                    <td><a href="/delete/song/<%= song._id %>/playlist/<%= playlist._id %>">Delete</a></td>
                 </tr>
             <% }); %>
         </tbody>

@@ -4,9 +4,12 @@
  * ha nem heyes akkor vissza iranyit a login pagere de egy hibaval
  */
 module.exports = (bcrypt) => {
-	const Users = require("../models/users");
+	const Users = require("../../models/users");
 	return (req, res, next) => {
-		if (typeof req.body.username === "undefined" || typeof req.body.password === "undefined") {
+		if (
+			typeof req.body.username === "undefined" ||
+			typeof req.body.password === "undefined"
+		) {
 			return next();
 		}
 		Users.findOne({ username: req.body.username }, (error, user) => {
@@ -14,17 +17,16 @@ module.exports = (bcrypt) => {
 				res.locals.error = "Wrong username or password!";
 				return next();
 			}
-			bcrypt.compare(req.body.password, user.password, (error, result) => {
-				if (error) {
-					return next(error);
-				}
-				if (result) {
+			bcrypt
+				.compare(req.body.password, user.password)
+				.then(() => {
 					req.session.userid = req.body.username;
 					return res.redirect("/playlists");
-				}
-				res.locals.error = "Wrong username or password!";
-				return next();
-			});
+				})
+				.catch((error) => {
+					res.locals.error = "Wrong username or password!";
+					return next(error);
+				});
 		});
 	};
 };

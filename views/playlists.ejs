@@ -21,7 +21,7 @@
                     <td><%= playlist.creator; %></td>
                     <td><%= playlist.date; %></td>
                     <td><a href="/edit/playlist/<%= playlist._id %>">Edit</a></td>
-                    <td><a href="#">Delete</a></td>
+                    <td><a href="/delete/playlist/<%= playlist._id %>">Delete</a></td>
                 </tr>
             <% }); %>
         </tbody>
