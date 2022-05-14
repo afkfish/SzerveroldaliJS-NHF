@@ -22,12 +22,14 @@ const bcrypt = require("bcrypt");
 const PlaylistModel = require("../models/playlists");
 const SongModel = require("../models/songs");
 const ArtistModel = require("../models/artists");
+const UserModel = require("../models/users");
 
 module.exports = function (app) {
 	const obj = {
 		PlaylistModel: PlaylistModel,
 		SongModel: SongModel,
 		ArtistModel: ArtistModel,
+		UserModel: UserModel,
 	};
 
 	app.get(
@@ -134,12 +136,12 @@ module.exports = function (app) {
 	app.use(
 		"/registration",
 		theme(),
-		register(),
+		register(obj, bcrypt),
 		render_mw(obj, "registration")
 	);
 	app.use("/logout", theme(), logout());
 
 	app.use("/theme/toggle", theme("toggle"));
 
-	app.use("/", theme(), check_pw(bcrypt), render_mw(obj, "main"));
+	app.use("/", theme(), check_pw(obj, bcrypt), render_mw(obj, "main"));
 };

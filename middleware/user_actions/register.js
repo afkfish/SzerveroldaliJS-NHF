@@ -1,6 +1,5 @@
-module.exports = () => {
-	const bcrypt = require("bcrypt");
-	const User = require("../../models/users");
+module.exports = (obj, bcrypt) => {
+	const User = obj.UserModel;
 	return (req, res, next) => {
 		if (
 			typeof req.body.username === "undefined" ||

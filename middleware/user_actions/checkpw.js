@@ -3,8 +3,8 @@
  * es akkor egy adatbazisbol fogja lekerdezni a helyes felhasznaloi adatokat.
  * ha nem heyes akkor vissza iranyit a login pagere de egy hibaval
  */
-module.exports = (bcrypt) => {
-	const Users = require("../../models/users");
+module.exports = (obj, bcrypt) => {
+	const Users = obj.UserModel;
 	return (req, res, next) => {
 		if (
 			typeof req.body.username === "undefined" ||

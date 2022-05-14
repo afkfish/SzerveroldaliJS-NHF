@@ -2,19 +2,24 @@
 	"dependencies": {
 		"bcrypt": "^5.0.1",
 		"body-parser": "^1.19.2",
+		"chai": "^4.3.6",
 		"cookie-parser": "^1.4.6",
 		"ejs": "^3.1.6",
 		"express": "^4.17.3",
 		"express-session": "^1.17.2",
+		"mocha": "^10.0.0",
 		"mongoose": "^6.2.10",
-		"nodemon": "^2.0.15"
+		"nodemon": "^2.0.15",
+		"nyc": "^15.1.0"
 	},
 	"name": "playlists",
 	"version": "1.0.0",
 	"main": "index.js",
 	"scripts": {
-		"test": "open http://localhost:3000",
-		"posttest": "nodemon"
+		"test": "mocha test/ --recursive",
+		"coverage": "nyc --all npm run test",
+		"postcoverage": "nyc report --reporter=html",
+		"run": "nodemon"
 	},
 	"repository": {
 		"type": "git",

@@ -6,6 +6,6 @@ module.exports = () => {
 		if (req.session.userid) {
 			return next();
 		}
-		res.redirect("/");
+		return res.redirect("/");
 	};
 };
